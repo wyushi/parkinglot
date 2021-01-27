@@ -6,4 +6,9 @@ public class Bus extends Vehicle {
         super(id);
         this.size = VehicleSize.Large;
     }
+
+    @Override
+    public String toShortString() {
+        return "B";
+    }
 }

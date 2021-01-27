@@ -6,4 +6,9 @@ public class Motorcycle extends Vehicle {
         super(id);
         this.size = VehicleSize.Motorcycle;
     }
+
+    @Override
+    public String toShortString() {
+        return "M";
+    }
 }

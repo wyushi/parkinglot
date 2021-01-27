@@ -6,4 +6,9 @@ public class Car extends Vehicle {
         super(id);
         this.size = VehicleSize.Compact;
     }
+
+    @Override
+    public String toShortString() {
+        return "C";
+    }
 }
