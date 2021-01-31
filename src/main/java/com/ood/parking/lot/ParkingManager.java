@@ -3,9 +3,7 @@ package com.ood.parking.lot;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ood.parking.vehicle.Bus;
 import com.ood.parking.vehicle.Vehicle;
-import com.ood.parking.vehicle.VehicleSize;
 
 public class ParkingManager {
     List<List<List<Vehicle>>> spots = new ArrayList<>();
@@ -56,59 +54,8 @@ public class ParkingManager {
         return this.spots.get(0).get(0).size();
     }
 
-
     public boolean parkVehicle(Vehicle vehicle) {
-        // 1. find me a spot
-        // 2. put vehicle into the spot
-        int[] spot = findASpot(vehicle.size, vehicle.requiredNumSpots);
-        if (spot == null) { return false; }
-        parkVehicleIntoSpot(vehicle, spot);
-        return true;
-    }
-
-    private int[] findASpot(VehicleSize size, int requiredNumSpots) {
-        return null;
-    }
-
-    private void parkVehicleIntoSpot(Vehicle vehicle, int[] spot) {}
-
-    private boolean park(Vehicle vehicle, int start) {
-        for (List<List<Vehicle>> level: spots) {
-            for (List<Vehicle> row: level) {
-                for (int i = start; i < row.size(); i++) {
-                    if (row.get(i) == null) {
-                        row.set(i, vehicle);
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean parkBus(Bus bus) {
-        for (List<List<Vehicle>> level: spots) {
-            for (List<Vehicle> row: level) {
-                int start = -1;
-                for (int i = getNumOfSpotsPerRow() * 3 / 4; i < row.size(); i++) {
-                    if (row.get(i) == null) {
-                        if (start == -1) {
-                            start = i;
-                        } else {
-                            if (i - start == 4) {
-                                for (int j = start; j <= i; j++) {
-                                    row.set(j, bus);
-                                }
-                                return true;
-                            }
-                        }
-                    } else {
-                        start = -1;
-                    }
-                }
-            }
-        }
-        return false;
+        return vehicle.park(this.spots);
     }
 
     public boolean unParkVehicle(Vehicle vehicle) {

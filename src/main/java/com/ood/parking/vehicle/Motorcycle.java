@@ -1,6 +1,8 @@
 package com.ood.parking.vehicle;
 
-public class Motorcycle extends Vehicle {
+import java.util.List;
+
+public final class Motorcycle extends SingleSpotVehicle {
     
     public Motorcycle (String id) {
         super(id);
@@ -10,5 +12,10 @@ public class Motorcycle extends Vehicle {
     @Override
     public String toShortString() {
         return "M";
+    }
+
+    @Override
+    public boolean park(List<List<List<Vehicle>>> spots) {
+        return this.parkSingleSpot(spots, 0);
     }
 }
